@@ -23,10 +23,10 @@ public class timing
                 try {
                     int ret = p.exitValue();
                     if (ret == 0) {
+                        System.out.println("Passwort: " + npass);
                         return;
                     } else if (ret == 1) {
                         if (chars > pchars) {
-                            System.out.println(npass);
                             pass = npass;
                             pchars = chars;
                             i = -1;
