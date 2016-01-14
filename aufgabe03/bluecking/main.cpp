@@ -34,16 +34,21 @@ int main()
             futures.push_back(async(checkPassword, password + i));
         }
 
+        long max = -1;
+        char c;
+
         for (char i = 0; i < futures.size(); i++)
         {
-            long rc = futures.at(i).get();
-            if (rc > (password.size() + 1) * 100)
+            long time = futures.at(i).get();
+            if (time > max)
             {
-                cout << (char) (i + 65) << flush;
-                password.push_back((char) (i + 65));
-                break;
+                max = time;
+                c = (char) (i + 65);
             }
         }
+
+        cout << c << flush;
+        password.push_back(c);
 
         futures.clear();
     }
