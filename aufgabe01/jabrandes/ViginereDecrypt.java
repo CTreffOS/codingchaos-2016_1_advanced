@@ -1,7 +1,7 @@
 
 public class ViginereDecrypt {
 
-	private static final String key = "chaostreffosnabrueck";
+	private static final String KEY = "chaostreffosnabrueck";
 	
 	public static String decrypt(String text) {
 		text = text.toLowerCase();
@@ -12,8 +12,8 @@ public class ViginereDecrypt {
 		int asciiLength = ((int) 'z') - asciiStart + 1;
 		for (char c : text.toCharArray()) {
 			if (c >= asciiStart && c < asciiStart + asciiLength) {
-				result += (char) ((((((int) c - asciiStart) - ((int) Main.key.charAt(keyPos) - asciiStart)) + asciiLength) % asciiLength) + asciiStart);
-				keyPos = (keyPos + 1) % Main.key.length();
+				result += (char) ((((((int) c - asciiStart) - ((int) KEY.charAt(keyPos) - asciiStart)) + asciiLength) % asciiLength) + asciiStart);
+				keyPos = (keyPos + 1) % KEY.length();
 			} else {
 				result += c;
 			}
