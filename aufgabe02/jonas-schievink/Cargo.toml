@@ -1,0 +1,9 @@
+[package]
+name = "jonas-schievink"
+version = "0.1.0"
+authors = ["Jonas Schievink <jonas@schievink.net>"]
+
+[dependencies]
+hyper = "0.7"
+serde_json = "0.6"
+rustc-serialize = "*"
