@@ -1,0 +1,31 @@
+#!/usr/bin/python
+import sys
+import struct
+
+in_file = sys.argv[1]
+out_file = sys.argv[2]
+
+with open(in_file, 'r') as audio:
+    audio.seek(0,2)
+    size = audio.tell()
+    audio.seek(0)
+    sample_data = struct.unpack('<{}h'.format(size/2), audio.read())
+
+    packed = []
+    bin_size = len(sample_data) / 1000
+    for i in range(0, len(sample_data), bin_size):
+        data = sample_data[i:i+bin_size]
+
+        packed.append(sum(data)/len(data))
+
+    amp_range = abs(min(packed)) + abs(max(packed))
+
+    packed = [int(255 * float(val + abs(min(packed))) / amp_range) for val in packed]
+
+with open(out_file, 'w') as image:
+    image.write('P1\n')
+    image.write('1000 255')
+    for i in range(255, 127, -1):
+        image.write(' '.join([str(255 if val > 127 and val < i else 0) for val in packed]) + '\n')
+    for i in range(127, -1, -1):
+        image.write(' '.join([str(255 if val < 127 and val > i else 0) for val in packed]) + '\n')
