@@ -7,9 +7,12 @@ def encrypt(text):
 	reverse =  {value: key for key, value in alphabet.items()}
 	code = ''
 	for i,letter in enumerate(text):
-		offset = reverse[key[i]]
-		place = reverse[letter]
-		code = code + alphabet[(offset+place) % 26]
+		offset = reverse[key[i % len(key)]]
+		if not letter in reverse:
+			code = code + letter
+		else:	
+			place = reverse[letter]
+			code = code + alphabet[(offset+place) % 26]
 	return code
 	
 
