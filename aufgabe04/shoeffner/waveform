@@ -24,8 +24,6 @@ with open(in_file, 'r') as audio:
 
 with open(out_file, 'w') as image:
     image.write('P1\n')
-    image.write('1000 255')
-    for i in range(255, 127, -1):
-        image.write(' '.join([str(255 if val > 127 and val < i else 0) for val in packed]) + '\n')
-    for i in range(127, -1, -1):
-        image.write(' '.join([str(255 if val < 127 and val > i else 0) for val in packed]) + '\n')
+    image.write('1000 255\n')
+    for i in range(0, 256, 1):
+        image.write(' '.join([str(255 if val == i else 0) for val in packed]) + '\n')
