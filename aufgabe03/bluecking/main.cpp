@@ -1,3 +1,10 @@
+/*
+ * You must compile this with -pthread parameter:
+ *
+ * g++ main.cpp -pthread
+ *
+ */
+
 #include <iostream>
 #include <future>
 #include <vector>
@@ -9,9 +16,9 @@ long checkPassword(string pass)
 {
     string command = "./crypto " + string(pass);
 
-    milliseconds begin = duration_cast<milliseconds>(system_clock::now().time_since_epoch());
+    nanoseconds begin = duration_cast<nanoseconds>(system_clock::now().time_since_epoch());
     int returnCode = system(command.c_str());
-    long time = (duration_cast<milliseconds>(system_clock::now().time_since_epoch()) - begin).count();
+    long time = (duration_cast<nanoseconds>(system_clock::now().time_since_epoch()) - begin).count();
 
     if (returnCode == 0)
     {
