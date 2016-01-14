@@ -3,10 +3,15 @@
 import sys
 import urllib2
 import json
-import pprint
+import textwrap
 
 args = sys.argv
 reqs = json.loads(urllib2.urlopen("https://api.github.com/repos/{}/{}/pulls".format(args[1], args[2])).read())
 
 for req in reqs:
-    print u"{:>3} {:>20}  {:.54}".format(req["number"], req["user"]["login"], req["body"].replace('\n', ' ').replace('\r', ''))
+    commit_msg = textwrap.wrap(req["body"], 54)
+    print u"{:>3} {:>20}  {:.54}".format(req["number"], req["user"]["login"], commit_msg[0] if len(commit_msg) > 0 else '')
+    if len(commit_msg) > 1:
+        for line in commit_msg[1:]:
+            print u"{}{}".format(' '*26, line)
+    
