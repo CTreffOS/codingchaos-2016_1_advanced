@@ -12,7 +12,7 @@ public class ViginereEncrypt {
 		int asciiLength = ((int) 'z') - asciiStart + 1;
 		for (char c : text.toCharArray()) {
 			if (c >= asciiStart && c < asciiStart + asciiLength) {
-				result += (char) (((((int) c - asciiStart) + ((int) Main.key.charAt(keyPos) - asciiStart)) % asciiLength) + asciiStart);
+				result += (char) (((((int) c - asciiStart) + ((int) KEY.charAt(keyPos) - asciiStart)) % asciiLength) + asciiStart);
 				keyPos = (keyPos + 1) % KEY.length();
 			} else {
 				result += c;
