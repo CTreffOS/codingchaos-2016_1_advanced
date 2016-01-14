@@ -2,7 +2,7 @@
 
 use std::*;
 
-const KEY: &'static str = "lemon";
+const KEY: &'static str = "chaostreffosnabrueck";
 const ALPHABET: &'static str = "abcdefghijklmnopqrstuvwxyz";
 
 fn encrypt(text: &str, key: &str) -> String {
