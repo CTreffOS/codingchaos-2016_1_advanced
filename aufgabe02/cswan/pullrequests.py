@@ -2,16 +2,18 @@ import json
 import sys
 import urllib.request
 import codecs
+import configparser
 
 BASEURL = 'https://api.github.com/repos/$USER/$REPO/pulls?access_token=$TOKEN'
-TOKEN = '9d049b7c35bcf4159f7f7a184551f6998545893f'
 
 
 def main():
     user = sys.argv[1]
     repo = sys.argv[2]
 
-    url = BASEURL.replace('$USER', user).replace('$REPO', repo).replace('$TOKEN', TOKEN)
+    config = configparser.RawConfigParser(allow_no_value=True)
+    config.read('config.cfg')
+    url = BASEURL.replace('$USER', user).replace('$REPO', repo).replace('$TOKEN', config['default']['token'])
 
     reader = codecs.getreader("utf-8")
     res = urllib.request.urlopen(url)
