@@ -1,0 +1,6 @@
+[package]
+name = "jonas-schievink"
+version = "0.1.0"
+authors = ["Jonas Schievink <jonas@schievink.net>"]
+
+[dependencies]
