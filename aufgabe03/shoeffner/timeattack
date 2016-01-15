@@ -1,0 +1,33 @@
+#!/usr/bin/python
+import subprocess
+import time
+import string
+
+
+password = ''
+
+rc = 0
+while rc != 2:
+    password = password + 'A'
+    rc = subprocess.call(["../crypto", password])
+
+length = len(password) - 1
+password = [''] * length;
+
+exec_time = 0.1
+
+while rc != 0:
+    for i in range(length):
+        j = 0
+        ex_time = 0
+        while ex_time < exec_time * (i + 1):
+            password[i] = string.ascii_uppercase[j]
+            start = time.time()
+            rc = subprocess.call(["../crypto", ''.join(password)])
+            ex_time = time.time() - start
+            j = j + 1
+#            print password, ex_time
+print ''.join(password)
+
+
+    
