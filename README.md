@@ -31,3 +31,11 @@ werden:
  - Rust
 
 Alles andere Bedarf eine kurze Rücksprache mit der Jury.
+
+# Gewinner
+
+* Sebastian Höffner
+* Jannis Mast
+* Christian Swan
+
+Wir gratulieren den Gewinnern!
